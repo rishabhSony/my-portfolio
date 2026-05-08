@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rishabh Soni | Portfolio OS</title>
+<meta name="description" content="Rishabh Soni's interactive terminal portfolio. Full-stack engineer & creative technologist showcasing projects and experience."/>
+<meta property="og:title" content="Rishabh Soni | Portfolio OS" />
+<meta property="og:description" content="Rishabh Soni's interactive terminal portfolio. Full-stack engineer & creative technologist showcasing projects and experience." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://rishabhsoni.dev/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=IBM+Plex+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#002200",
+                    "tertiary-fixed-dim": "#ffabf3",
+                    "primary-fixed": "#77ff61",
+                    "on-tertiary": "#5b005b",
+                    "error-container": "#93000a",
+                    "tertiary-container": "#ffcdf4",
+                    "background": "#0a0e27",
+                    "tertiary": "#fff6f9",
+                    "primary": "#eaffde",
+                    "surface-dim": "#0a0e27",
+                    "on-error": "#690005",
+                    "secondary-fixed-dim": "#00ffff",
+                    "on-tertiary-fixed-variant": "#810081",
+                    "on-primary-fixed-variant": "#015300",
+                    "error": "#ffb4ab",
+                    "surface-tint": "#00ff88",
+                    "surface-container": "#1a1f3a",
+                    "outline": "#84967c",
+                    "surface-container-highest": "#333535",
+                    "primary-container": "#00ff88",
+                    "secondary-container": "#00ffff",
+                    "surface-bright": "#37393a",
+                    "on-secondary-fixed-variant": "#004f4f",
+                    "on-surface-variant": "#b9ccaf",
+                    "on-surface": "#e2e2e2",
+                    "secondary": "#ffffff",
+                    "secondary-fixed": "#00ffff",
+                    "on-tertiary-container": "#ac00ac",
+                    "outline-variant": "#3b4b35",
+                    "on-secondary-container": "#007070",
+                    "surface-container-lowest": "#0c0f0f",
+                    "on-primary-container": "#027100",
+                    "on-secondary": "#003737",
+                    "on-primary": "#013a00",
+                    "on-error-container": "#ffdad6",
+                    "inverse-primary": "#026e00",
+                    "surface-container-low": "#1a1c1c",
+                    "inverse-on-surface": "#2f3131",
+                    "on-tertiary-fixed": "#380038",
+                    "surface-container-high": "#282a2b",
+                    "on-background": "#e2e2e2",
+                    "tertiary-fixed": "#ffd7f5",
+                    "on-secondary-fixed": "#002020",
+                    "primary-fixed-dim": "#00ff88",
+                    "surface-variant": "#333535",
+                    "inverse-surface": "#e2e2e2",
+                    "surface": "#1a1f3a",
+                    "warning": "#ffb000",
+                    "danger": "#ff00ff",
+                    "muted": "#888888"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0px",
+                    "lg": "0px",
+                    "xl": "0px",
+                    "full": "0px"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "unit": "4px",
+                    "xs": "4px",
+                    "lg": "32px",
+                    "sm": "8px",
+                    "margin": "40px",
+                    "gutter": "24px",
+                    "xl": "64px"
+            },
+            "fontFamily": {
+                    "body-md": ["JetBrains Mono"],
+                    "label-caps": ["IBM Plex Mono"],
+                    "headline-xl": ["IBM Plex Mono"],
+                    "code-sm": ["JetBrains Mono"],
+                    "headline-lg": ["IBM Plex Mono"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "headline-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "code-sm": ["14px", {"lineHeight": "1.4", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="font-body-md text-body-md bg-background text-on-surface selection:bg-surface-tint selection:text-black">
+<a href="#main-content" class="sr-only focus:not-sr-only bg-surface-tint text-black p-sm absolute z-[100] outline-none border-2 border-dashed border-black m-sm">Skip to main content</a>
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-background/60 backdrop-blur-md border-b border-outline-variant shadow-[0_0_20px_rgba(2,230,0,0.3)] flex justify-between items-center px-margin py-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-surface-tint" data-icon="terminal">terminal</span>
+<h1 class="font-headline-lg text-headline-lg text-surface-tint uppercase tracking-tighter m-0">PORTFOLIO_OS_v1.0</h1>
+</div>
+<nav class="hidden md:flex items-center gap-lg">
+<a class="nav-cmd font-code-sm text-code-sm uppercase text-primary-fixed-dim hover:text-surface-tint transition-all duration-300" href="#" data-command="home">$ cd /home</a>
+<a class="nav-cmd font-code-sm text-code-sm uppercase text-on-surface-variant hover:text-surface-tint transition-all duration-300" href="#" data-command="whoami">$ whoami</a>
+<a class="nav-cmd font-code-sm text-code-sm uppercase text-on-surface-variant hover:text-surface-tint transition-all duration-300" href="#" data-command="projects">$ cd /projects</a>
+<a class="nav-cmd font-code-sm text-code-sm uppercase text-on-surface-variant hover:text-surface-tint transition-all duration-300" href="#" data-command="stack">$ cd /stack</a>
+<a class="nav-cmd font-code-sm text-code-sm uppercase text-on-surface-variant hover:text-surface-tint transition-all duration-300" href="#" data-command="experience">$ cat experience.log</a>
+<a class="nav-cmd font-code-sm text-code-sm uppercase text-on-surface-variant hover:text-surface-tint transition-all duration-300" href="#" data-command="contact">$ ssh contact</a>
+</nav>
+<div class="flex items-center gap-sm md:hidden">
+<button id="menu-toggle" class="material-symbols-outlined text-on-surface-variant cursor-pointer active:scale-95 outline-none focus-visible:ring-2 focus-visible:ring-secondary min-w-[44px] min-h-[44px] flex items-center justify-center" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">menu</button>
+</div>
+</header>
+<main id="main-content" class="pt-[100px] px-margin pb-xl max-w-[1440px] mx-auto space-y-xl">
+<!-- Centerpiece Branding -->
+<section id="home" class="flex flex-col items-center justify-center py-xl overflow-hidden w-full">
+<pre class="font-headline-xl text-[6px] sm:text-[8px] md:text-[14px] lg:text-[18px] xl:text-[24px] text-surface-tint pixel-text text-center leading-none terminal-glow overflow-hidden max-w-full">██████╗ ██╗███████╗██╗  ██╗ █████╗ ██████╗ ██╗  ██╗
+██╔══██╗██║██╔════╝██║  ██║██╔══██╗██╔══██╗██║  ██║
+██████╔╝██║███████╗███████║███████║██████╔╝███████║
+██╔══██╗██║╚════██║██╔══██║██╔══██║██╔══██╗██╔══██║
+██║  ██║██║███████║██║  ██║██║  ██║██████╔╝██║  ██║
+╚═╝  ╚═╝╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝
+            </pre>
+<div class="mt-md font-code-sm text-code-sm text-secondary-fixed-dim tracking-[0.5em] uppercase">
+                &lt; FULL_STACK_ENGINEER / CREATIVE_TECHNOLOGIST &gt;
+            </div>
+</section>
+<!-- Hero Section: Split Terminal & Overview -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Left: Terminal Window -->
+<div class="md:col-span-7 glass-panel flex flex-col h-[400px]">
+<div class="flex items-center justify-between px-md py-sm border-b border-outline-variant bg-surface-container-low">
+<div class="flex items-center gap-xs">
+<div class="w-2 h-2 bg-error"></div>
+<div class="w-2 h-2 bg-tertiary-fixed-dim"></div>
+<div class="w-2 h-2 bg-surface-tint"></div>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">bash — 80x24</span>
+<span class="material-symbols-outlined text-xs text-on-surface-variant" data-icon="close">close</span>
+</div>
+<div id="terminal-output" class="p-md font-code-sm text-code-sm space-y-sm overflow-y-auto flex-1" aria-live="polite">
+<div id="initial-terminal-block">
+<div class="flex gap-sm">
+<span class="text-surface-tint">➜</span>
+<span class="text-on-surface">~ whoami --bio</span>
+</div>
+<div class="text-on-surface-variant pl-md mb-md mt-sm">
+                        [INIT] Starting Rishabh_Soni_Identity.sh...<br/>
+                        [SUCCESS] Core loaded in 12ms.<br/><br/>
+<span class="text-secondary-fixed-dim">USER:</span> Rishabh Soni<br/>
+<span class="text-secondary-fixed-dim">ROLE:</span> Senior Software Engineer<br/>
+<span class="text-secondary-fixed-dim">LOC:</span> San Francisco, CA<br/>
+<span class="text-secondary-fixed-dim">DESC:</span> Crafting high-performance digital ecosystems with a focus on low-latency architectures and retro-futuristic UI/UX design. Obsessed with terminal productivity and distributed systems.<br/><br/>
+</div>
+</div>
+</div>
+<div id="terminal-cursor-line" class="flex items-center gap-sm p-md border-t border-outline-variant shrink-0 bg-surface-container-lowest min-h-[56px]">
+<span class="text-surface-tint">➜</span>
+<span class="text-on-surface flex-1 flex items-center">~ <input type="text" id="terminal-input" aria-label="Terminal command input" class="bg-transparent border-none outline-none text-on-surface font-code-sm text-[16px] md:text-[14px] flex-1 ml-xs shadow-none focus:ring-0 p-0 m-0 min-h-[44px]" autocomplete="off" spellcheck="false" autofocus></span>
+</div>
+</div>
+<!-- Right: System Overview & CTA -->
+<div class="md:col-span-5 flex flex-col justify-between space-y-gutter">
+<div class="glass-panel p-lg space-y-md flex-1">
+<h3 class="font-headline-lg text-headline-lg text-on-surface border-b border-outline-variant pb-sm uppercase">System_Overview</h3>
+<div class="space-y-sm font-code-sm">
+<div class="flex justify-between border-b border-outline-variant/30 py-xs">
+<span class="text-on-surface-variant">OS_KERNEL</span>
+<span class="text-surface-tint">v4.12.0-STABLE</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/30 py-xs">
+<span class="text-on-surface-variant">TECH_STACK</span>
+<span class="text-on-surface">REACT / RUST / AWS</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/30 py-xs">
+<span class="text-on-surface-variant">EXP_LEVEL</span>
+<span class="text-on-surface">8+ YEARS</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/30 py-xs">
+<span class="text-on-surface-variant">AVAILABILITY</span>
+<span class="text-secondary-fixed-dim">FOR_NEW_CHALLENGES</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-sm mt-lg">
+<button class="nav-cmd border border-surface-tint text-surface-tint py-md font-label-caps text-label-caps uppercase transition-all duration-300 btn-glow-hover hover:bg-surface-tint hover:text-black active:scale-95" data-command="projects">
+                        PROJECTS
+                    </button>
+<button class="nav-cmd border border-secondary-fixed-dim text-secondary-fixed-dim py-md font-label-caps text-label-caps uppercase transition-all duration-300 btn-glow-cyan hover:bg-secondary-fixed-dim hover:text-black active:scale-95" data-command="contact">
+                        CONTACT
+                    </button>
+<a href="resume.pdf" class="border border-outline text-on-surface py-md font-label-caps text-label-caps uppercase transition-all duration-300 hover:bg-outline hover:text-black active:scale-95 text-center flex items-center justify-center" download>
+                        RESUME
+                    </a>
+</div>
+</div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="glass-panel p-lg space-y-lg scroll-mt-[100px]">
+    <header class="border-b border-outline-variant pb-md mb-lg">
+        <div class="flex gap-sm font-code-sm text-code-sm mb-xs">
+            <span class="text-surface-tint">$</span>
+            <span class="text-secondary-fixed-dim">whoami</span>
+        </div>
+        <h2 class="font-headline-lg text-headline-lg text-on-surface uppercase tracking-tight">ABOUT_ME</h2>
+    </header>
+    <div id="about-container" class="grid grid-cols-1 md:grid-cols-12 gap-xl">
+        <!-- Content populated by JS -->
+    </div>
+</section>
+
+<!-- Secondary Section: System Stats -->
+<section id="stats" class="glass-panel p-lg space-y-lg">
+<div class="flex items-center gap-sm border-b border-outline-variant pb-md">
+<span class="material-symbols-outlined text-secondary-fixed-dim" data-icon="monitoring">monitoring</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface uppercase tracking-tight">SYSTEM_STATS_DASHBOARD</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-xl">
+<!-- Uptime -->
+<div class="space-y-sm">
+<div class="flex justify-between items-end">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Uptime_Reliability</span>
+<span class="font-code-sm text-surface-tint">99.98%</span>
+</div>
+<div class="h-2 bg-surface-container-highest w-full overflow-hidden">
+<div class="h-full bg-surface-tint shadow-[0_0_10px_rgba(2,230,0,0.8)]" style="width: 99.98%"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-code-sm">Status: Nominal / No Errors Detected</p>
+</div>
+<!-- Cores -->
+<div class="space-y-sm">
+<div class="flex justify-between items-end">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Cores_Active</span>
+<span class="font-code-sm text-secondary-fixed-dim">16 / 16</span>
+</div>
+<div class="flex gap-[2px]">
+<div class="h-4 w-full bg-secondary-fixed-dim shadow-[0_0_5px_rgba(0,221,221,0.5)]"></div>
+<div class="h-4 w-full bg-secondary-fixed-dim shadow-[0_0_5px_rgba(0,221,221,0.5)]"></div>
+<div class="h-4 w-full bg-secondary-fixed-dim shadow-[0_0_5px_rgba(0,221,221,0.5)]"></div>
+<div class="h-4 w-full bg-secondary-fixed-dim shadow-[0_0_5px_rgba(0,221,221,0.5)]"></div>
+<div class="h-4 w-full bg-secondary-fixed-dim shadow-[0_0_5px_rgba(0,221,221,0.5)]"></div>
+<div class="h-4 w-full bg-secondary-fixed-dim shadow-[0_0_5px_rgba(0,221,221,0.5)]"></div>
+<div class="h-4 w-full bg-secondary-fixed-dim shadow-[0_0_5px_rgba(0,221,221,0.5)]"></div>
+<div class="h-4 w-full bg-secondary-fixed-dim shadow-[0_0_5px_rgba(0,221,221,0.5)]"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-code-sm">Parallel_Processing: Optimized</p>
+</div>
+<!-- Latency -->
+<div class="space-y-sm">
+<div class="flex justify-between items-end">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Net_Latency</span>
+<span class="font-code-sm text-tertiary-fixed-dim">12ms</span>
+</div>
+<div class="h-2 bg-surface-container-highest w-full overflow-hidden flex items-center">
+<div class="h-full bg-tertiary-fixed-dim" style="width: 12%"></div>
+<div class="flex-1 border-t border-dashed border-tertiary-fixed-dim/30"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-code-sm">Connection: Hyper-Low Latency</p>
+</div>
+</div>
+</section>
+<!-- Projects Section -->
+<section id="projects" class="space-y-lg scroll-mt-[100px]">
+    <header class="border-b border-outline-variant pb-md mb-lg">
+        <div class="flex gap-sm font-code-sm text-code-sm mb-xs">
+            <span class="text-surface-tint">$</span>
+            <span class="text-secondary-fixed-dim">ls ./projects</span>
+        </div>
+        <h2 class="font-headline-lg text-headline-lg text-on-surface uppercase tracking-tight">PROJECTS</h2>
+    </header>
+    <div id="projects-container" class="space-y-lg">
+        <!-- Content populated by JS -->
+    </div>
+</section>
+
+<!-- Experience Section -->
+<section id="experience" class="glass-panel p-lg space-y-lg scroll-mt-[100px]">
+    <header class="border-b border-outline-variant pb-md mb-lg">
+        <div class="flex gap-sm font-code-sm text-code-sm mb-xs">
+            <span class="text-surface-tint">$</span>
+            <span class="text-secondary-fixed-dim">cat experience.log</span>
+        </div>
+        <h2 class="font-headline-lg text-headline-lg text-on-surface uppercase tracking-tight">EXPERIENCE</h2>
+    </header>
+    <div id="experience-container" class="space-y-xl border-l border-outline-variant/50 ml-sm pl-lg md:ml-md md:pl-xl relative">
+        <!-- Content populated by JS -->
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="glass-panel p-lg space-y-lg scroll-mt-[100px]">
+    <header class="border-b border-outline-variant pb-md mb-lg">
+        <div class="flex gap-sm font-code-sm text-code-sm mb-xs">
+            <span class="text-surface-tint">$</span>
+            <span class="text-secondary-fixed-dim">open secure_channel</span>
+        </div>
+        <h2 class="font-headline-lg text-headline-lg text-on-surface uppercase tracking-tight">CONTACT</h2>
+    </header>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-xl">
+        <div class="space-y-md">
+            <p class="font-code-sm text-on-surface-variant">
+                Transmission protocol active. Please provide your identification and message payload below.
+            </p>
+            <div class="font-code-sm text-surface-tint mt-lg space-y-sm">
+                <div><span class="text-secondary-fixed-dim">STATUS:</span> AWAITING_INPUT</div>
+                <div><span class="text-secondary-fixed-dim">ENCRYPTION:</span> ENABLED (RSA-4096)</div>
+                <div><span class="text-secondary-fixed-dim">ROUTING:</span> DIRECT_TO_OWNER</div>
+            </div>
+        </div>
+        <div>
+            <form id="contact-form" class="space-y-md" novalidate>
+                <div class="space-y-xs">
+                    <label for="contact-name" class="font-label-caps text-label-caps text-secondary-fixed-dim uppercase">IDENTIFICATION_STRING</label>
+                    <input type="text" id="contact-name" name="name" required class="w-full bg-surface-container-low border border-outline-variant text-on-surface font-code-sm p-sm focus-visible:outline-none focus-visible:border-secondary-fixed-dim focus-visible:ring-1 focus-visible:ring-secondary-fixed-dim placeholder:text-outline" placeholder="name@terminal ~$">
+                </div>
+                <div class="space-y-xs">
+                    <label for="contact-email" class="font-label-caps text-label-caps text-secondary-fixed-dim uppercase">RETURN_ADDRESS</label>
+                    <input type="email" id="contact-email" name="email" required class="w-full bg-surface-container-low border border-outline-variant text-on-surface font-code-sm p-sm focus-visible:outline-none focus-visible:border-secondary-fixed-dim focus-visible:ring-1 focus-visible:ring-secondary-fixed-dim placeholder:text-outline" placeholder="email@terminal ~$">
+                </div>
+                <div class="space-y-xs">
+                    <label for="contact-message" class="font-label-caps text-label-caps text-secondary-fixed-dim uppercase">PAYLOAD</label>
+                    <textarea id="contact-message" name="message" required rows="5" class="w-full bg-surface-container-low border border-outline-variant text-on-surface font-code-sm p-sm focus-visible:outline-none focus-visible:border-secondary-fixed-dim focus-visible:ring-1 focus-visible:ring-secondary-fixed-dim placeholder:text-outline resize-none" placeholder="message@terminal ~$"></textarea>
+                </div>
+                <div id="contact-status" class="font-code-sm text-sm hidden" aria-live="polite"></div>
+                <button type="submit" id="contact-submit" class="btn-primary w-full py-md font-label-caps text-label-caps uppercase focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-surface-tint disabled:opacity-50 disabled:cursor-not-allowed">
+                    TRANSMIT_PAYLOAD
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-outline-variant bg-background flex flex-col md:flex-row justify-between items-center px-margin py-lg gap-md mt-xl">
+<div id="footer-copyright" class="font-label-caps text-label-caps text-on-surface-variant">
+            © 2024 DEPLOY_CMD. ALL RIGHTS RESERVED.
+        </div>
+<div id="footer-socials" class="flex gap-lg">
+</div>
+<div class="font-code-sm text-surface-tint flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-surface-tint animate-pulse"></span>
+            SYSTEM_ENCRYPTED_AND_SECURE
+        </div>
+</footer>
+<!-- Side Navigation Drawer -->
+<div id="drawer-overlay" class="fixed inset-0 z-[55] bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 md:hidden" aria-hidden="true"></div>
+<div id="mobile-drawer" class="fixed inset-y-0 left-0 z-[60] bg-surface border-r border-outline flex flex-col p-xl space-y-md w-4/5 max-w-sm h-full -translate-x-full transition-transform duration-300 md:hidden" aria-hidden="true" tabindex="-1">
+<div class="flex justify-between items-center mb-lg">
+<div class="font-headline-lg text-headline-lg text-surface-tint uppercase">ROOT_DIRECTORY</div>
+<button id="menu-close" class="material-symbols-outlined text-on-surface-variant hover:text-danger active:scale-95 outline-none focus-visible:ring-2 focus-visible:ring-secondary min-w-[44px] min-h-[44px] flex items-center justify-center" aria-label="Close menu">close</button>
+</div>
+<div class="flex flex-col space-y-md">
+<button class="nav-cmd w-full flex items-center gap-md p-md text-black bg-surface-tint shadow-[0_0_20px_rgba(2,230,0,0.5)] font-code-sm text-code-sm uppercase outline-none focus-visible:ring-2 focus-visible:ring-secondary" data-command="home">
+<span class="material-symbols-outlined">home</span>
+<span>$ cd /home</span>
+</button>
+<button class="nav-cmd w-full flex items-center gap-md p-md text-on-surface hover:text-surface-tint hover:bg-surface-container-highest transition-all duration-300 font-code-sm text-code-sm uppercase outline-none focus-visible:ring-2 focus-visible:ring-secondary" data-command="whoami">
+<span class="material-symbols-outlined">person</span>
+<span>$ whoami</span>
+</button>
+<button class="nav-cmd w-full flex items-center gap-md p-md text-on-surface hover:text-surface-tint hover:bg-surface-container-highest transition-all duration-300 font-code-sm text-code-sm uppercase outline-none focus-visible:ring-2 focus-visible:ring-secondary" data-command="projects">
+<span class="material-symbols-outlined">folder_special</span>
+<span>$ cd /projects</span>
+</button>
+<button class="nav-cmd w-full flex items-center gap-md p-md text-on-surface hover:text-surface-tint hover:bg-surface-container-highest transition-all duration-300 font-code-sm text-code-sm uppercase outline-none focus-visible:ring-2 focus-visible:ring-secondary" data-command="stack">
+<span class="material-symbols-outlined">terminal</span>
+<span>$ cd /stack</span>
+</button>
+<button class="nav-cmd w-full flex items-center gap-md p-md text-on-surface hover:text-surface-tint hover:bg-surface-container-highest transition-all duration-300 font-code-sm text-code-sm uppercase outline-none focus-visible:ring-2 focus-visible:ring-secondary" data-command="experience">
+<span class="material-symbols-outlined">history</span>
+<span>$ cat experience</span>
+</button>
+<button class="nav-cmd w-full flex items-center gap-md p-md text-on-surface hover:text-surface-tint hover:bg-surface-container-highest transition-all duration-300 font-code-sm text-code-sm uppercase outline-none focus-visible:ring-2 focus-visible:ring-secondary" data-command="contact">
+<span class="material-symbols-outlined">mail</span>
+<span>$ ssh contact</span>
+</button>
+</div>
+</div>
+<!-- Back to top button -->
+<button id="back-to-top" class="fixed bottom-lg right-lg z-50 bg-surface-container-highest border border-surface-tint text-surface-tint p-sm rounded-none shadow-[0_0_10px_rgba(2,230,0,0.3)] opacity-0 pointer-events-none transition-all duration-300 hover:bg-surface-tint hover:text-black hover:shadow-[0_0_20px_rgba(2,230,0,0.6)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary active:scale-95" aria-label="Back to top">
+<span class="material-symbols-outlined">arrow_upward</span>
+</button>
+<script src="data.js" defer></script>
+<script src="script.js" defer></script>
+</body></html>
