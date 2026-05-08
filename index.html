@@ -3,12 +3,12 @@
 <html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Rishabh Soni | Portfolio OS</title>
-<meta name="description" content="Rishabh Soni's interactive terminal portfolio. Full-stack engineer & creative technologist showcasing projects and experience."/>
-<meta property="og:title" content="Rishabh Soni | Portfolio OS" />
-<meta property="og:description" content="Rishabh Soni's interactive terminal portfolio. Full-stack engineer & creative technologist showcasing projects and experience." />
+<title>Rishabh Soni | Generative AI Engineer</title>
+<meta name="description" content="Rishabh Soni's interactive terminal portfolio. Generative AI Engineer specializing in LLM integration, RAG pipelines, AI agents, and full-stack AI product development."/>
+<meta property="og:title" content="Rishabh Soni | Generative AI Engineer" />
+<meta property="og:description" content="Rishabh Soni's interactive terminal portfolio. Generative AI Engineer specializing in LLM integration, RAG pipelines, AI agents, and full-stack AI product development." />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="https://rishabhsoni.dev/og-image.png" />
+<meta property="og:image" content="https://rishabhsony.github.io/my-portfolio/og-image.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=IBM+Plex+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
@@ -160,12 +160,12 @@
 <span class="text-on-surface">~ whoami --bio</span>
 </div>
 <div class="text-on-surface-variant pl-md mb-md mt-sm">
-                        [INIT] Starting Rishabh_Soni_Identity.sh...<br/>
+                        [INIT] Starting Identity.sh...<br/>
                         [SUCCESS] Core loaded in 12ms.<br/><br/>
-<span class="text-secondary-fixed-dim">USER:</span> Rishabh Soni<br/>
-<span class="text-secondary-fixed-dim">ROLE:</span> Senior Software Engineer<br/>
-<span class="text-secondary-fixed-dim">LOC:</span> San Francisco, CA<br/>
-<span class="text-secondary-fixed-dim">DESC:</span> Crafting high-performance digital ecosystems with a focus on low-latency architectures and retro-futuristic UI/UX design. Obsessed with terminal productivity and distributed systems.<br/><br/>
+<span class="text-secondary-fixed-dim">USER:</span> YOUR_FULL_NAME<br/>
+<span class="text-secondary-fixed-dim">ROLE:</span> YOUR_CURRENT_ROLE<br/>
+<span class="text-secondary-fixed-dim">LOC:</span> YOUR_LOCATION<br/>
+<span class="text-secondary-fixed-dim">DESC:</span> YOUR_SHORT_BIO<br/><br/>
 </div>
 </div>
 </div>
@@ -393,6 +393,24 @@
 </button>
 </div>
 </div>
+</div>
+<!-- Project Details Modal -->
+<dialog id="project-modal" class="bg-surface border border-outline shadow-[0_0_30px_rgba(0,255,136,0.2)] max-w-4xl w-[95%] sm:w-[90%] md:w-[80%] max-h-[90vh] p-0 backdrop:bg-black/80 backdrop:backdrop-blur-sm fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 m-0 rounded-none overflow-hidden text-on-surface">
+    <div class="flex flex-col h-full max-h-[90vh]">
+        <header class="flex justify-between items-center p-md border-b border-outline-variant bg-surface-container-low shrink-0">
+            <div class="flex items-center gap-sm">
+                <span class="text-surface-tint font-label-caps text-label-caps uppercase bg-surface-tint/10 px-xs py-unit border border-surface-tint/30" id="modal-project-category">/CATEGORY</span>
+            </div>
+            <button id="close-modal" class="material-symbols-outlined text-on-surface-variant hover:text-danger active:scale-95 outline-none focus-visible:ring-2 focus-visible:ring-surface-tint transition-colors" aria-label="Close modal">close</button>
+        </header>
+        <div class="p-lg md:p-xl overflow-y-auto font-code-sm text-sm space-y-xl" id="modal-content">
+            <!-- Content populated via JS -->
+        </div>
+        <footer class="p-md border-t border-outline-variant bg-surface-container-low shrink-0 flex gap-md" id="modal-footer">
+            <!-- Links populated via JS -->
+        </footer>
+    </div>
+</dialog>
 <!-- Back to top button -->
 <button id="back-to-top" class="fixed bottom-lg right-lg z-50 bg-surface-container-highest border border-surface-tint text-surface-tint p-sm rounded-none shadow-[0_0_10px_rgba(2,230,0,0.3)] opacity-0 pointer-events-none transition-all duration-300 hover:bg-surface-tint hover:text-black hover:shadow-[0_0_20px_rgba(2,230,0,0.6)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary active:scale-95" aria-label="Back to top">
 <span class="material-symbols-outlined">arrow_upward</span>

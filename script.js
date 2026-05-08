@@ -84,71 +84,101 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             name: 'about',
             aliases: ['whoami', 'cd about', 'whoami --bio'],
-            description: 'Identity profile',
+            description: 'Learn about me',
             action: () => scrollToSection('about'),
-            response: `
-                [INIT] Starting Rishabh_Soni_Identity.sh...<br/>
+            response: () => `
+                [INIT] Starting Identity.sh...<br/>
                 [SUCCESS] Core loaded in 12ms.<br/><br/>
-                <span class="text-secondary-fixed-dim">USER:</span> Rishabh Soni<br/>
-                <span class="text-secondary-fixed-dim">ROLE:</span> Senior Software Engineer<br/>
-                <span class="text-secondary-fixed-dim">LOC:</span> San Francisco, CA<br/>
-                <span class="text-secondary-fixed-dim">DESC:</span> Crafting high-performance digital ecosystems with a focus on low-latency architectures and retro-futuristic UI/UX design. Obsessed with terminal productivity and distributed systems.<br/><br/>
+                <span class="text-secondary-fixed-dim">USER:</span> ${portfolioData.profile.fullName}<br/>
+                <span class="text-secondary-fixed-dim">ROLE:</span> ${portfolioData.profile.currentRole}<br/>
+                <span class="text-secondary-fixed-dim">LOC:</span> ${portfolioData.profile.location}<br/><br/>
+                <span class="text-surface-tint">SPECIALIZATIONS:</span><br/>
+                &nbsp;&nbsp;• Building AI-powered applications<br/>
+                &nbsp;&nbsp;• LLM integration and prompt engineering<br/>
+                &nbsp;&nbsp;• RAG pipelines and vector search systems<br/>
+                &nbsp;&nbsp;• AI agents, automation, and workflow tools<br/>
+                &nbsp;&nbsp;• Full-stack AI product development<br/>
             `
         },
         {
             name: 'projects',
             aliases: ['cd projects', 'cd /projects', './view_projects.sh'],
-            description: 'View project index',
+            description: 'View AI projects',
             action: () => scrollToSection('projects'),
-            response: `
+            response: () => `
                 Loading active projects...<br/><br/>
-                <span class="text-surface-tint">[1] NEURAL_NET_VISUALIZER</span><br/>
-                - Desc: Interactive 3D map of neural connections using WebGL & Rust.<br/>
-                - Status: <span class="text-surface-tint">ONLINE</span><br/><br/>
-                <span class="text-secondary-fixed-dim">[2] QUANTUM_AUTH_SYS</span><br/>
-                - Desc: Next-gen biometric authentication gateway.<br/>
-                - Status: <span class="text-secondary-fixed-dim">STABLE</span>
+                ${portfolioData.projects.map((p, i) => `
+                <span class="${p.featured ? 'text-surface-tint' : 'text-secondary-fixed-dim'}">[${i+1}] ${p.name.toUpperCase()}</span><br/>
+                - ${p.description}<br/>
+                - Status: <span class="${p.featured ? 'text-surface-tint' : 'text-secondary-fixed-dim'}">${p.featured ? 'FEATURED' : 'ONLINE'}</span><br/><br/>
+                `).join('')}
             `
         },
         {
             name: 'stack',
-            aliases: ['cd stack', 'cd /stack', 'cat package.json'],
-            description: 'View technology stack',
+            aliases: ['skills', 'cd stack', 'cd /stack', 'cat package.json'],
+            description: 'View AI engineering stack',
             action: () => scrollToSection('stats'),
-            response: `
-                {<br/>
-                &nbsp;&nbsp;<span class="text-surface-tint">"react"</span>: "^18.2.0",<br/>
-                &nbsp;&nbsp;<span class="text-surface-tint">"rust"</span>: "cargo-1.70",<br/>
-                &nbsp;&nbsp;<span class="text-surface-tint">"aws-sdk"</span>: "^3.0.0",<br/>
-                &nbsp;&nbsp;<span class="text-secondary-fixed-dim">"tailwind"</span>: "^3.4.0",<br/>
-                &nbsp;&nbsp;<span class="text-secondary-fixed-dim">"docker"</span>: "latest"<br/>
-                }
-            `
+            response: () => {
+                let res = `[AI ENGINEERING STACK]:<br/><br/>`;
+                portfolioData.skills.forEach(cat => {
+                    res += `<span class="text-surface-tint">${cat.category.toUpperCase()}</span><br/>`;
+                    cat.items.forEach(item => {
+                        res += `&nbsp;&nbsp;<span class="text-secondary-fixed-dim">├─</span> ${item}<br/>`;
+                    });
+                    res += `<br/>`;
+                });
+                return res;
+            }
         },
         {
             name: 'experience',
             aliases: ['cd experience', 'cd /experience', 'cat experience.log', 'cat experience'],
-            description: 'View timeline',
+            description: 'View roles & responsibilities',
             action: () => scrollToSection('experience'),
-            response: `
-                Opening experience log...<br/><br/>
-                <span class="text-surface-tint">[LATEST ENTRY]</span><br/>
-                Company: Tech_Corp Global<br/>
-                Role: Lead Systems Architect<br/>
-                Status: <span class="text-surface-tint">ACTIVE</span>
-            `
+            response: () => {
+                const exp = portfolioData.experience[0];
+                if (!exp) return 'No experience data found.';
+                let res = `Opening experience log...<br/><br/>`;
+                res += `<span class="text-surface-tint">[${exp.role.toUpperCase()}]</span> — ${exp.startDate} to ${exp.endDate}<br/><br/>`;
+                exp.achievements.forEach(a => {
+                    res += `&nbsp;&nbsp;<span class="text-secondary-fixed-dim">✓</span> ${a}<br/>`;
+                });
+                return res;
+            }
         },
         {
             name: 'contact',
             aliases: ['cd contact', 'cd /contact', 'ssh contact'],
-            description: 'Open contact channel',
+            description: 'Get in touch',
             action: () => scrollToSection('contact'),
-            response: `
+            response: () => `
                 Establishing secure connection... <span class="text-surface-tint">SUCCESS</span><br/><br/>
-                <span class="text-secondary-fixed-dim">EMAIL:</span> hello@rishabhsoni.dev<br/>
-                <span class="text-secondary-fixed-dim">GITHUB:</span> github.com/rishabhsoni<br/>
-                <span class="text-secondary-fixed-dim">LINKEDIN:</span> linkedin.com/in/rishabhsoni<br/><br/>
+                <span class="text-secondary-fixed-dim">EMAIL:</span> ${portfolioData.profile.email}<br/>
+                <span class="text-secondary-fixed-dim">GITHUB:</span> ${portfolioData.profile.socials.github}<br/>
+                <span class="text-secondary-fixed-dim">LINKEDIN:</span> ${portfolioData.profile.socials.linkedin}<br/><br/>
                 Awaiting transmission...
+            `
+        },
+        {
+            name: 'resume',
+            aliases: ['cv', 'download resume'],
+            description: 'Download my resume',
+            action: () => {
+                window.open('resume.pdf', '_blank');
+            },
+            response: `Downloading resume.pdf...<br/><span class="text-surface-tint">[OK]</span> Opening in new tab.`
+        },
+        {
+            name: 'socials',
+            aliases: ['social', 'links'],
+            description: 'Connect with me',
+            action: () => {},
+            response: () => `
+                <span class="text-surface-tint">[SOCIAL LINKS]</span><br/><br/>
+                <span class="text-secondary-fixed-dim">GITHUB:</span> ${portfolioData.profile.socials.github}<br/>
+                <span class="text-secondary-fixed-dim">LINKEDIN:</span> ${portfolioData.profile.socials.linkedin}<br/>
+                <span class="text-secondary-fixed-dim">X/TWITTER:</span> ${portfolioData.profile.socials.x}<br/>
             `
         },
         {
@@ -174,6 +204,148 @@ document.addEventListener('DOMContentLoaded', () => {
                     res += `<span class="text-surface-tint">${paddedName}</span> - ${c.description}<br/>`;
                 });
                 return res;
+            }
+        },
+        {
+            name: 'cloudflow',
+            aliases: ['project cloudflow'],
+            description: 'View CloudFlow Analytics project',
+            action: () => scrollToSection('projects'),
+            response: () => {
+                const p = portfolioData.projects.find(p => p.slug === 'cloudflow-analytics');
+                if (!p) return 'Project not found.';
+                return `
+                Loading project: ${p.name}...<br/>
+                Pipeline: ${p.architecture ? p.architecture.join(' → ') : ''}<br/>
+                Focus: raw network data to visualization and security analytics.<br/>
+                `;
+            }
+        },
+        {
+            name: 'aws',
+            aliases: [],
+            description: 'View AWS services used',
+            action: () => {},
+            response: () => {
+                const awsServices = [];
+                portfolioData.projects.forEach(p => {
+                    if (p.techStack) {
+                        p.techStack.forEach(t => {
+                            if ((t.startsWith('Amazon') || t.startsWith('AWS') || t.startsWith('SageMaker') || t === 'IAM' || t === 'JupyterLab') && !awsServices.includes(t)) {
+                                awsServices.push(t);
+                            }
+                        });
+                    }
+                });
+                return `
+                <span class="text-surface-tint">[AWS SERVICES ACROSS PROJECTS]</span><br/>
+                ${awsServices.map(s => `<span class="text-secondary-fixed-dim">├─</span> ${s}`).join('<br/>')}
+                `;
+            }
+        },
+        {
+            name: 'genai',
+            aliases: ['project genai'],
+            description: 'View GenAI App project',
+            action: () => scrollToSection('projects'),
+            response: () => {
+                const p = portfolioData.projects.find(p => p.slug === 'enterprise-generative-ai-aws');
+                if (!p) return 'Project not found.';
+                return `
+                Loading project: ${p.name}...<br/>
+                Flow: S3 → CloudFront → API Gateway → Lambda → SageMaker Endpoint<br/>
+                Focus: serverless AI inference and enterprise prompt-based generation.<br/>
+                `;
+            }
+        },
+        {
+            name: 'ai',
+            aliases: [],
+            description: 'View GenAI architecture',
+            action: () => {},
+            response: () => {
+                const p = portfolioData.projects.find(p => p.slug === 'enterprise-generative-ai-aws');
+                if (!p) return 'Project not found.';
+                return `
+                [GENAI ARCHITECTURE]:<br/>
+                ${p.architecture.join(' → ')}
+                `;
+            }
+        },
+        {
+            name: 'sagemaker',
+            aliases: [],
+            description: 'View SageMaker stack',
+            action: () => {},
+            response: () => {
+                return `
+                SageMaker stack:<br/>
+                - SageMaker Studio<br/>
+                - JupyterLab<br/>
+                - SageMaker Endpoint<br/>
+                - SageMaker Runtime<br/>
+                - Lambda integration through boto3
+                `;
+            }
+        },
+        {
+            name: 'lex',
+            aliases: [],
+            description: 'View AWS Lex GenAI Voice Chatbot project',
+            action: () => scrollToSection('projects'),
+            response: () => {
+                const p = portfolioData.projects.find(p => p.slug === 'readers-are-leaders-lex-genai-chatbot');
+                if (!p) return 'Project not found.';
+                return `
+                Loading project: ${p.name}...<br/>
+                Flow: Web UI → Cognito → Lex → Lambda → SageMaker Endpoint<br/>
+                Focus: conversational AI chatbot with text and voice interaction.<br/>
+                `;
+            }
+        },
+        {
+            name: 'chatbot',
+            aliases: [],
+            description: 'View Chatbot Architecture',
+            action: () => scrollToSection('projects'),
+            response: () => {
+                const p = portfolioData.projects.find(p => p.slug === 'readers-are-leaders-lex-genai-chatbot');
+                if (!p) return 'Project not found.';
+                return `
+                [CHATBOT ARCHITECTURE]:<br/>
+                ${p.architecture.join(' → ')}
+                `;
+            }
+        },
+        {
+            name: 'readers',
+            aliases: ['project readers'],
+            description: 'Scroll to AWS Lex GenAI Voice Chatbot project',
+            action: () => scrollToSection('projects'),
+            response: () => {
+                return `Navigating to AWS Lex GenAI Voice Chatbot project...`;
+            }
+        },
+        {
+            name: 'voicebot',
+            aliases: [],
+            description: 'View Voicebot features',
+            action: () => {},
+            response: () => {
+                return `
+                Voice mode enabled through Amazon Lex language settings.<br/>
+                Voice: Joanna for English responses.<br/>
+                Purpose: allow users to interact with the chatbot using voice output.
+                `;
+            }
+        },
+        {
+            name: 'langchain',
+            aliases: [],
+            description: 'View LangChain integration',
+            action: () => {},
+            response: () => {
+                return `LangChain was packaged as a Python 3.9 Lambda layer and attached to the Lambda fulfillment function.`;
             }
         }
     ];
@@ -396,10 +568,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Render Bio
         const bioHtml = `
             <div class="md:col-span-5 space-y-md">
-                <div class="font-headline-lg text-headline-lg text-surface-tint mb-sm">${profile.name}</div>
-                <div class="font-code-sm text-code-sm text-secondary-fixed-dim uppercase mb-lg">&lt; ${profile.role} &gt;</div>
+                <div class="font-headline-lg text-headline-lg text-surface-tint mb-sm">${profile.fullName}</div>
+                <div class="font-code-sm text-code-sm text-secondary-fixed-dim uppercase mb-lg">&lt; ${profile.currentRole} &gt;</div>
                 <p class="font-code-sm text-code-sm text-on-surface leading-relaxed border-l-2 border-surface-tint pl-md">
-                    ${profile.summary}
+                    ${profile.shortBio}
                 </p>
                 <div class="flex items-center gap-sm mt-md font-code-sm text-code-sm text-on-surface-variant">
                     <span class="material-symbols-outlined text-sm">location_on</span>
@@ -438,26 +610,62 @@ document.addEventListener('DOMContentLoaded', () => {
         let html = '';
 
         if (featuredProject) {
+            const hasLinks = featuredProject.githubUrl || featuredProject.liveUrl;
+            const githubAttr = featuredProject.githubUrl ? `href="${featuredProject.githubUrl}"` : 'disabled aria-disabled="true"';
+            const liveAttr = featuredProject.liveUrl ? `href="${featuredProject.liveUrl}"` : 'disabled aria-disabled="true"';
+            
             html += `
-                <div class="premium-card relative group overflow-hidden h-[400px] mb-lg">
-                    <img class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700 grayscale" alt="${featuredProject.imageAlt || featuredProject.title}" src="${featuredProject.imageUrl || ''}" loading="lazy"/>
-                    <div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent p-lg flex flex-col justify-end">
-                        <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-md">
-                            <div>
-                                <span class="text-surface-tint font-label-caps text-label-caps mb-xs uppercase">/FEATURED_PROJECT</span>
-                                <h3 class="font-headline-lg text-headline-lg text-white uppercase mb-sm">${featuredProject.title}</h3>
-                                <p class="text-on-surface-variant font-code-sm max-w-2xl mb-md">${featuredProject.description}</p>
-                                <div class="flex gap-sm flex-wrap">
-                                    ${featuredProject.stack.map(tech => `<span class="border border-secondary-fixed-dim px-sm py-xs font-code-sm text-[10px] text-secondary-fixed-dim uppercase">${tech}</span>`).join('')}
+                <article class="premium-card relative group overflow-hidden mb-lg flex flex-col">
+                    <div class="p-lg flex flex-col justify-between h-full bg-surface-container-low/80">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-start gap-lg w-full">
+                            <div class="flex-1">
+                                <div class="flex gap-sm items-center mb-sm">
+                                    <span class="text-surface-tint font-label-caps text-label-caps uppercase bg-surface-tint/10 px-xs py-unit border border-surface-tint/30">/FEATURED_PROJECT</span>
+                                    <span class="text-secondary-fixed-dim font-code-sm text-[12px] uppercase">${featuredProject.category}</span>
                                 </div>
-                            </div>
-                            <div class="flex gap-md shrink-0">
-                                <a href="${featuredProject.githubUrl}" class="text-link font-code-sm text-sm uppercase outline-none">GITHUB →</a>
-                                <a href="${featuredProject.liveUrl}" class="text-link font-code-sm text-sm uppercase outline-none text-surface-tint hover:text-surface-tint">VIEW LIVE →</a>
+                                <h3 class="font-headline-lg text-[28px] text-white uppercase mb-sm leading-tight">${featuredProject.name}</h3>
+                                <p class="text-on-surface font-code-sm max-w-3xl mb-md">${featuredProject.longDescription || featuredProject.description}</p>
+                                <div class="flex gap-sm flex-wrap mb-md">
+                                    ${featuredProject.techStack.map(tech => `<span class="border border-secondary-fixed-dim px-sm py-xs font-code-sm text-[10px] text-secondary-fixed-dim uppercase">${tech}</span>`).join('')}
+                                </div>
+                                ${featuredProject.highlights ? `
+                                <div class="mb-md">
+                                    <h4 class="font-label-caps text-secondary-fixed-dim mb-xs uppercase">Highlights</h4>
+                                    <ul class="space-y-xs font-code-sm text-[13px] text-on-surface">
+                                        ${featuredProject.highlights.map(hl => `<li><span class="text-surface-tint opacity-50 mr-xs">»</span>${hl}</li>`).join('')}
+                                    </ul>
+                                </div>
+                                ` : ''}
+                                ${featuredProject.architecture ? `
+                                <div class="mt-md border border-outline-variant/50 bg-background/50 p-md rounded-none">
+                                    <h4 class="font-label-caps text-secondary-fixed-dim mb-sm">ARCHITECTURE FLOW</h4>
+                                    <div class="flex flex-col md:flex-row md:flex-wrap items-start md:items-center gap-sm font-code-sm text-[12px] text-on-surface-variant">
+                                        ${featuredProject.architecture.map((step, idx) => `
+                                            <span class="flex items-center gap-sm">
+                                                <span class="text-white">${step}</span>
+                                                ${idx < featuredProject.architecture.length - 1 ? '<span class="text-surface-tint hidden md:inline">→</span><span class="text-surface-tint md:hidden">↓</span>' : ''}
+                                            </span>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                                ` : ''}
+                                ${featuredProject.useCases ? `
+                                <div class="mt-md border border-outline-variant/50 bg-background/50 p-md rounded-none">
+                                    <h4 class="font-label-caps text-surface-tint mb-sm">ANALYTICS USE CASES</h4>
+                                    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-xs font-code-sm text-[12px] text-on-surface">
+                                        ${featuredProject.useCases.map(uc => `<li><span class="text-secondary-fixed-dim mr-xs">»</span>${uc}</li>`).join('')}
+                                    </ul>
+                                </div>
+                                ` : ''}
                             </div>
                         </div>
+                        <div class="flex gap-md shrink-0 mt-lg border-t border-outline-variant/30 pt-md">
+                            <a ${githubAttr} class="text-link font-code-sm text-sm uppercase outline-none ${featuredProject.githubUrl ? 'hover:text-surface-tint' : 'text-muted cursor-not-allowed'}">${featuredProject.githubUrl ? 'GITHUB →' : 'GITHUB (COMING SOON)'}</a>
+                            <a ${liveAttr} class="text-link font-code-sm text-sm uppercase outline-none ${featuredProject.liveUrl ? 'text-surface-tint hover:text-white' : 'text-muted cursor-not-allowed'}">${featuredProject.liveUrl ? 'VIEW LIVE →' : 'LIVE (COMING SOON)'}</a>
+                            ${featuredProject.details ? `<button class="view-details-btn text-link font-code-sm text-sm uppercase outline-none text-surface-tint hover:text-white ml-auto" data-slug="${featuredProject.slug}">VIEW DETAILS →</button>` : ''}
+                        </div>
                     </div>
-                </div>
+                </article>
             `;
         }
 
@@ -467,19 +675,40 @@ document.addEventListener('DOMContentLoaded', () => {
                 <article class="premium-card p-lg relative group flex flex-col justify-between h-full">
                     <div>
                         <div class="flex justify-between items-start mb-sm">
-                            <span class="text-secondary-fixed-dim font-label-caps text-label-caps uppercase">/${project.id.replace('-', '_')}</span>
-                            ${project.icon ? `<span class="material-symbols-outlined text-outline-variant group-hover:text-surface-tint transition-colors">${project.icon}</span>` : ''}
+                            <span class="text-secondary-fixed-dim font-label-caps text-label-caps uppercase">/${project.slug.replace(/-/g, '_')}</span>
                         </div>
-                        <h3 class="font-headline-lg text-[24px] leading-tight text-white uppercase mb-sm">${project.title}</h3>
+                        <h3 class="font-headline-lg text-[24px] leading-tight text-white uppercase mb-sm">${project.name}</h3>
                         <p class="text-on-surface-variant font-code-sm mb-md">${project.description}</p>
                     </div>
                     <div class="mt-lg">
+                        ${project.highlights ? `
+                        <div class="mb-md">
+                            <h4 class="font-label-caps text-secondary-fixed-dim mb-xs uppercase">Highlights</h4>
+                            <ul class="space-y-xs font-code-sm text-[11px] text-on-surface">
+                                ${project.highlights.map(hl => `<li><span class="text-surface-tint opacity-50 mr-xs">»</span>${hl}</li>`).join('')}
+                            </ul>
+                        </div>
+                        ` : ''}
+                        ${project.architecture ? `
+                        <div class="mb-md border border-outline-variant/30 bg-background/30 p-sm rounded-none">
+                            <h4 class="font-label-caps text-[10px] text-secondary-fixed-dim mb-xs uppercase">Architecture Flow</h4>
+                            <div class="flex flex-col md:flex-row md:flex-wrap items-start md:items-center gap-xs font-code-sm text-[10px] text-on-surface-variant">
+                                ${project.architecture.map((step, idx) => `
+                                    <span class="flex items-center gap-xs">
+                                        <span class="text-white">${step}</span>
+                                        ${idx < project.architecture.length - 1 ? '<span class="text-surface-tint hidden md:inline">→</span><span class="text-surface-tint md:hidden">↓</span>' : ''}
+                                    </span>
+                                `).join('')}
+                            </div>
+                        </div>
+                        ` : ''}
                         <div class="flex gap-sm mb-md flex-wrap">
-                            ${project.stack.map(tech => `<span class="border border-secondary-fixed-dim px-sm py-xs font-code-sm text-[10px] text-secondary-fixed-dim uppercase">${tech}</span>`).join('')}
+                            ${project.techStack.map(tech => `<span class="border border-secondary-fixed-dim px-sm py-xs font-code-sm text-[10px] text-secondary-fixed-dim uppercase">${tech}</span>`).join('')}
                         </div>
                         <div class="flex gap-md border-t border-outline-variant/30 pt-md mt-auto">
-                            <a href="${project.githubUrl}" class="text-link font-code-sm text-[12px] uppercase outline-none">GITHUB →</a>
-                            <a href="${project.liveUrl}" class="text-link font-code-sm text-[12px] uppercase outline-none text-surface-tint hover:text-surface-tint">VIEW LIVE →</a>
+                            <a ${project.githubUrl && project.githubUrl !== '#' ? `href="${project.githubUrl}"` : 'disabled aria-disabled="true"'} class="text-link font-code-sm text-[12px] uppercase outline-none ${project.githubUrl && project.githubUrl !== '#' ? '' : 'text-muted cursor-not-allowed'}">${project.githubUrl && project.githubUrl !== '#' ? 'GITHUB →' : 'GITHUB (N/A)'}</a>
+                            <a ${project.liveUrl && project.liveUrl !== '#' ? `href="${project.liveUrl}"` : 'disabled aria-disabled="true"'} class="text-link font-code-sm text-[12px] uppercase outline-none ${project.liveUrl && project.liveUrl !== '#' ? 'text-surface-tint hover:text-white' : 'text-muted cursor-not-allowed'}">${project.liveUrl && project.liveUrl !== '#' ? 'VIEW LIVE →' : 'LIVE (N/A)'}</a>
+                            ${project.details ? `<button class="view-details-btn text-link font-code-sm text-[12px] uppercase outline-none text-surface-tint hover:text-white ml-auto" data-slug="${project.slug}">VIEW DETAILS →</button>` : ''}
                         </div>
                     </div>
                 </article>
@@ -512,7 +741,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             </time>
                         </div>
                         <ul class="space-y-sm font-code-sm text-on-surface mt-md">
-                            ${exp.description.map(desc => `
+                            ${(exp.achievements || []).map(desc => `
                                 <li class="flex gap-sm items-start">
                                     <span class="text-surface-tint opacity-50 mt-[2px] shrink-0">»</span>
                                     <span>${desc}</span>
@@ -539,7 +768,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!copyright || !socialsContainer || typeof portfolioData === 'undefined') return;
 
         const year = new Date().getFullYear();
-        copyright.innerHTML = `© ${year} ${portfolioData.profile.name.toUpperCase()}. ALL RIGHTS RESERVED.`;
+        copyright.innerHTML = `© ${year} ${portfolioData.profile.fullName.toUpperCase()}. ALL RIGHTS RESERVED.`;
 
         const { socials } = portfolioData.profile;
         let socialsHtml = '';
@@ -701,6 +930,368 @@ document.addEventListener('DOMContentLoaded', () => {
         backToTopBtn.addEventListener('click', () => {
             scrollToSection('home');
         });
+    }
+
+    // --- PHASE 11: PROJECT DETAILS MODAL ---
+    const projectModal = document.getElementById('project-modal');
+    const closeModalBtn = document.getElementById('close-modal');
+    const modalContent = document.getElementById('modal-content');
+    const modalCategory = document.getElementById('modal-project-category');
+    const modalFooter = document.getElementById('modal-footer');
+
+    if (projectModal && typeof portfolioData !== 'undefined') {
+        // Attach event listeners for open buttons
+        document.body.addEventListener('click', (e) => {
+            if (e.target.closest('.view-details-btn')) {
+                const btn = e.target.closest('.view-details-btn');
+                const slug = btn.getAttribute('data-slug');
+                const project = portfolioData.projects.find(p => p.slug === slug);
+                if (project && project.details) {
+                    openProjectModal(project);
+                }
+            }
+        });
+
+        closeModalBtn.addEventListener('click', closeProjectModal);
+        projectModal.addEventListener('click', (e) => {
+            if (e.target === projectModal) {
+                closeProjectModal();
+            }
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && projectModal.hasAttribute('open')) {
+                closeProjectModal();
+            }
+        });
+
+        function openProjectModal(project) {
+            modalCategory.textContent = `/${project.category.replace(/ /g, '_').toUpperCase()}`;
+            
+            // Build Content
+            let html = `
+                <div class="mb-xl">
+                    <h2 class="font-headline-lg text-3xl md:text-4xl text-white uppercase mb-sm leading-tight">${project.name}</h2>
+                    <p class="text-on-surface-variant font-code-sm text-base md:text-lg">${project.longDescription || project.description}</p>
+                </div>
+            `;
+
+            if (project.details.problemStatement) {
+                html += `
+                    <div class="mb-lg">
+                        <h3 class="font-label-caps text-surface-tint uppercase mb-sm border-b border-surface-tint/30 pb-xs inline-block">/PROBLEM_STATEMENT</h3>
+                        <p class="text-on-surface">${project.details.problemStatement}</p>
+                    </div>
+                `;
+            }
+
+            if (project.architecture) {
+                html += `
+                    <div class="mb-lg p-md bg-background border border-outline-variant">
+                        <h3 class="font-label-caps text-secondary-fixed-dim uppercase mb-md">/ARCHITECTURE_FLOW</h3>
+                        <div class="flex flex-col gap-xs font-code-sm">
+                            ${project.architecture.map((step, idx) => `
+                                <div class="flex gap-sm items-start">
+                                    <span class="text-secondary-fixed-dim shrink-0">[${String(idx + 1).padStart(2, '0')}]</span>
+                                    <span class="text-white">${step}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            if (project.techStack) {
+                html += `
+                    <div class="mb-lg">
+                        <h3 class="font-label-caps text-surface-tint uppercase mb-sm border-b border-surface-tint/30 pb-xs inline-block">/AWS_SERVICES_&_STACK</h3>
+                        <div class="flex flex-wrap gap-sm">
+                            ${project.techStack.map(tech => `<span class="border border-secondary-fixed-dim px-sm py-xs font-code-sm text-[12px] text-secondary-fixed-dim uppercase">${tech}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            if (project.details.dataPipelineSteps) {
+                html += `
+                    <div class="mb-lg">
+                        <h3 class="font-label-caps text-surface-tint uppercase mb-sm border-b border-surface-tint/30 pb-xs inline-block">/DATA_PIPELINE_STEPS</h3>
+                        <ul class="space-y-sm text-on-surface">
+                            ${project.details.dataPipelineSteps.map(step => `
+                                <li class="flex gap-sm items-start">
+                                    <span class="text-secondary-fixed-dim opacity-50 shrink-0">»</span>
+                                    <span>${step}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+
+            if (project.details.frontendWorkflow) {
+                html += `
+                    <div class="mb-lg">
+                        <h3 class="font-label-caps text-surface-tint uppercase mb-sm border-b border-surface-tint/30 pb-xs inline-block">/FRONTEND_WORKFLOW</h3>
+                        <ul class="space-y-sm text-on-surface">
+                            ${project.details.frontendWorkflow.map(step => `
+                                <li class="flex gap-sm items-start">
+                                    <span class="text-secondary-fixed-dim opacity-50 shrink-0">»</span>
+                                    <span>${step}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+
+            if (project.details.backendWorkflow) {
+                html += `
+                    <div class="mb-lg">
+                        <h3 class="font-label-caps text-surface-tint uppercase mb-sm border-b border-surface-tint/30 pb-xs inline-block">/BACKEND_WORKFLOW</h3>
+                        <ul class="space-y-sm text-on-surface">
+                            ${project.details.backendWorkflow.map(step => `
+                                <li class="flex gap-sm items-start">
+                                    <span class="text-secondary-fixed-dim opacity-50 shrink-0">»</span>
+                                    <span>${step}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+
+            if (project.details.apiGatewayIntegration) {
+                html += `
+                    <div class="mb-lg">
+                        <h3 class="font-label-caps text-surface-tint uppercase mb-sm border-b border-surface-tint/30 pb-xs inline-block">/API_GATEWAY_INTEGRATION</h3>
+                        <ul class="space-y-sm text-on-surface">
+                            ${project.details.apiGatewayIntegration.map(step => `
+                                <li class="flex gap-sm items-start">
+                                    <span class="text-secondary-fixed-dim opacity-50 shrink-0">»</span>
+                                    <span>${step}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+
+            if (project.details.deploymentSteps) {
+                html += `
+                    <div class="mb-lg">
+                        <h3 class="font-label-caps text-surface-tint uppercase mb-sm border-b border-surface-tint/30 pb-xs inline-block">/DEPLOYMENT_STEPS</h3>
+                        <ul class="space-y-sm text-on-surface">
+                            ${project.details.deploymentSteps.map(step => `
+                                <li class="flex gap-sm items-start">
+                                    <span class="text-secondary-fixed-dim opacity-50 shrink-0">»</span>
+                                    <span>${step}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+
+            if (project.details.sagemakerSetup) {
+                html += `
+                    <div class="mb-lg">
+                        <h3 class="font-label-caps text-surface-tint uppercase mb-sm border-b border-surface-tint/30 pb-xs inline-block">/SAGEMAKER_SETUP</h3>
+                        <ul class="space-y-sm text-on-surface">
+                            ${project.details.sagemakerSetup.map(step => `
+                                <li class="flex gap-sm items-start">
+                                    <span class="text-secondary-fixed-dim opacity-50 shrink-0">»</span>
+                                    <span>${step}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+
+            if (project.details.lambdaFulfillment) {
+                html += `
+                    <div class="mb-lg">
+                        <h3 class="font-label-caps text-surface-tint uppercase mb-sm border-b border-surface-tint/30 pb-xs inline-block">/LAMBDA_FULFILLMENT</h3>
+                        <ul class="space-y-sm text-on-surface">
+                            ${project.details.lambdaFulfillment.map(step => `
+                                <li class="flex gap-sm items-start">
+                                    <span class="text-secondary-fixed-dim opacity-50 shrink-0">»</span>
+                                    <span>${step}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+
+            if (project.details.langchainLayer) {
+                html += `
+                    <div class="mb-lg">
+                        <h3 class="font-label-caps text-surface-tint uppercase mb-sm border-b border-surface-tint/30 pb-xs inline-block">/LANGCHAIN_LAYER</h3>
+                        <ul class="space-y-sm text-on-surface">
+                            ${project.details.langchainLayer.map(step => `
+                                <li class="flex gap-sm items-start">
+                                    <span class="text-secondary-fixed-dim opacity-50 shrink-0">»</span>
+                                    <span>${step}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+
+            if (project.details.lexBotConfiguration) {
+                html += `
+                    <div class="mb-lg">
+                        <h3 class="font-label-caps text-surface-tint uppercase mb-sm border-b border-surface-tint/30 pb-xs inline-block">/LEX_BOT_CONFIGURATION</h3>
+                        <ul class="space-y-sm text-on-surface">
+                            ${project.details.lexBotConfiguration.map(step => `
+                                <li class="flex gap-sm items-start">
+                                    <span class="text-secondary-fixed-dim opacity-50 shrink-0">»</span>
+                                    <span>${step}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+
+            if (project.details.voiceInteraction) {
+                html += `
+                    <div class="mb-lg">
+                        <h3 class="font-label-caps text-surface-tint uppercase mb-sm border-b border-surface-tint/30 pb-xs inline-block">/VOICE_INTERACTION</h3>
+                        <ul class="space-y-sm text-on-surface">
+                            ${project.details.voiceInteraction.map(step => `
+                                <li class="flex gap-sm items-start">
+                                    <span class="text-secondary-fixed-dim opacity-50 shrink-0">»</span>
+                                    <span>${step}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+
+            if (project.details.webUiCognitoAccess) {
+                html += `
+                    <div class="mb-lg">
+                        <h3 class="font-label-caps text-surface-tint uppercase mb-sm border-b border-surface-tint/30 pb-xs inline-block">/WEB_UI_&_COGNITO</h3>
+                        <ul class="space-y-sm text-on-surface">
+                            ${project.details.webUiCognitoAccess.map(step => `
+                                <li class="flex gap-sm items-start">
+                                    <span class="text-secondary-fixed-dim opacity-50 shrink-0">»</span>
+                                    <span>${step}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+
+            if (project.useCases) {
+                html += `
+                    <div class="mb-lg">
+                        <h3 class="font-label-caps text-surface-tint uppercase mb-sm border-b border-surface-tint/30 pb-xs inline-block">/USE_CASES</h3>
+                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-sm text-on-surface">
+                            ${project.useCases.map(uc => `
+                                <li class="flex gap-xs items-start">
+                                    <span class="text-secondary-fixed-dim shrink-0">»</span>
+                                    <span>${uc}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+
+            if (project.details.securityInsights) {
+                html += `
+                    <div class="mb-lg p-md bg-surface-container-highest border border-outline-variant">
+                        <h3 class="font-label-caps text-tertiary-fixed-dim uppercase mb-sm">/SECURITY_INSIGHTS</h3>
+                        <ul class="space-y-sm text-on-surface">
+                            ${project.details.securityInsights.map(insight => `
+                                <li class="flex gap-sm items-start">
+                                    <span class="text-tertiary-fixed-dim shrink-0">#</span>
+                                    <span>${insight}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+
+            if (project.details.challenges) {
+                html += `
+                    <div class="mb-lg">
+                        <h3 class="font-label-caps text-warning uppercase mb-sm border-b border-warning/30 pb-xs inline-block">/CHALLENGES</h3>
+                        <p class="text-on-surface">${project.details.challenges}</p>
+                    </div>
+                `;
+            }
+
+            if (project.details.learnings) {
+                html += `
+                    <div class="mb-lg">
+                        <h3 class="font-label-caps text-surface-tint uppercase mb-sm border-b border-surface-tint/30 pb-xs inline-block">/WHAT_I_LEARNED</h3>
+                        <p class="text-on-surface">${project.details.learnings}</p>
+                    </div>
+                `;
+            }
+
+            if (project.details.learningOutcomes || project.learningOutcomes) {
+                const outcomes = project.details.learningOutcomes || project.learningOutcomes;
+                html += `
+                    <div class="mb-lg">
+                        <h3 class="font-label-caps text-surface-tint uppercase mb-sm border-b border-surface-tint/30 pb-xs inline-block">/LEARNING_OUTCOMES</h3>
+                        <ul class="space-y-sm text-on-surface">
+                            ${outcomes.map(outcome => `
+                                <li class="flex gap-sm items-start">
+                                    <span class="text-secondary-fixed-dim opacity-50 shrink-0">»</span>
+                                    <span>${outcome}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+
+            if (project.details.futureImprovements) {
+                html += `
+                    <div class="mb-lg border-t border-outline-variant/50 pt-lg">
+                        <h3 class="font-label-caps text-secondary-fixed-dim uppercase mb-sm border-b border-secondary-fixed-dim/30 pb-xs inline-block">/FUTURE_IMPROVEMENTS</h3>
+                        <ul class="space-y-sm text-on-surface">
+                            ${project.details.futureImprovements.map(imp => `
+                                <li class="flex gap-sm items-start">
+                                    <span class="text-secondary-fixed-dim opacity-50 shrink-0">»</span>
+                                    <span>${imp}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+
+            modalContent.innerHTML = html;
+
+            // Build Footer Links
+            let footerHtml = '';
+            if (project.githubUrl) {
+                footerHtml += `<a href="${project.githubUrl}" target="_blank" class="text-link font-code-sm text-sm uppercase outline-none hover:text-surface-tint">GITHUB →</a>`;
+            }
+            if (project.liveUrl) {
+                footerHtml += `<a href="${project.liveUrl}" target="_blank" class="text-link font-code-sm text-sm uppercase outline-none text-surface-tint hover:text-white">VIEW LIVE →</a>`;
+            }
+            modalFooter.innerHTML = footerHtml || '<span class="text-muted font-code-sm text-sm uppercase">LINKS UNAVAILABLE</span>';
+
+            document.body.style.overflow = 'hidden'; // prevent background scrolling
+            projectModal.showModal();
+            modalContent.scrollTop = 0; // reset scroll position
+        }
+
+        function closeProjectModal() {
+            projectModal.close();
+            document.body.style.overflow = ''; // restore scrolling
+        }
     }
 
 });
