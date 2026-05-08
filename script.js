@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cursorLine = document.getElementById('terminal-cursor-line');
     const terminalInput = document.getElementById('terminal-input');
     const navCommands = document.querySelectorAll('.nav-cmd');
-    
+
     // Mobile Drawer Elements
     const menuToggle = document.getElementById('menu-toggle');
     const menuClose = document.getElementById('menu-close');
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (menuToggle) menuToggle.addEventListener('click', openDrawer);
     if (menuClose) menuClose.addEventListener('click', closeDrawer);
     if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
-    
+
     // Close drawer on Escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && mobileDrawer.getAttribute('aria-hidden') === 'false') {
@@ -49,13 +49,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const headerOffset = 100; // Account for fixed header
             const elementPosition = section.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.scrollY - headerOffset;
-            
+
             window.scrollTo({
                 top: offsetPosition,
                 behavior: 'smooth'
             });
         }
-        
+
         // If on mobile, close drawer after navigating
         if (mobileDrawer.getAttribute('aria-hidden') === 'false') {
             closeDrawer();
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
             response: () => `
                 Loading active projects...<br/><br/>
                 ${portfolioData.projects.map((p, i) => `
-                <span class="${p.featured ? 'text-surface-tint' : 'text-secondary-fixed-dim'}">[${i+1}] ${p.name.toUpperCase()}</span><br/>
+                <span class="${p.featured ? 'text-surface-tint' : 'text-secondary-fixed-dim'}">[${i + 1}] ${p.name.toUpperCase()}</span><br/>
                 - ${p.description}<br/>
                 - Status: <span class="${p.featured ? 'text-surface-tint' : 'text-secondary-fixed-dim'}">${p.featured ? 'FEATURED' : 'ONLINE'}</span><br/><br/>
                 `).join('')}
@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: 'socials',
             aliases: ['social', 'links'],
             description: 'Connect with me',
-            action: () => {},
+            action: () => { },
             response: () => `
                 <span class="text-surface-tint">[SOCIAL LINKS]</span><br/><br/>
                 <span class="text-secondary-fixed-dim">GITHUB:</span> ${portfolioData.profile.socials.github}<br/>
@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: 'help',
             aliases: ['ls'],
             description: 'List all available commands',
-            action: () => {},
+            action: () => { },
             response: () => {
                 let res = `AVAILABLE COMMANDS:<br/>`;
                 commandDefinitions.forEach(c => {
@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: 'aws',
             aliases: [],
             description: 'View AWS services used',
-            action: () => {},
+            action: () => { },
             response: () => {
                 const awsServices = [];
                 portfolioData.projects.forEach(p => {
@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: 'ai',
             aliases: [],
             description: 'View GenAI architecture',
-            action: () => {},
+            action: () => { },
             response: () => {
                 const p = portfolioData.projects.find(p => p.slug === 'enterprise-generative-ai-aws');
                 if (!p) return 'Project not found.';
@@ -276,7 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: 'sagemaker',
             aliases: [],
             description: 'View SageMaker stack',
-            action: () => {},
+            action: () => { },
             response: () => {
                 return `
                 SageMaker stack:<br/>
@@ -330,7 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: 'voicebot',
             aliases: [],
             description: 'View Voicebot features',
-            action: () => {},
+            action: () => { },
             response: () => {
                 return `
                 Voice mode enabled through Amazon Lex language settings.<br/>
@@ -343,7 +343,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: 'langchain',
             aliases: [],
             description: 'View LangChain integration',
-            action: () => {},
+            action: () => { },
             response: () => {
                 return `LangChain was packaged as a Python 3.9 Lambda layer and attached to the Lambda fulfillment function.`;
             }
@@ -367,18 +367,18 @@ document.addEventListener('DOMContentLoaded', () => {
     function printCommand(commandText) {
         const cmdDiv = document.createElement('div');
         cmdDiv.className = 'flex gap-sm mt-sm';
-        
+
         const promptSpan = document.createElement('span');
         promptSpan.className = 'text-surface-tint';
         promptSpan.textContent = '➜';
-        
+
         const cmdSpan = document.createElement('span');
         cmdSpan.className = 'text-on-surface flex-1';
         cmdSpan.textContent = '~ ' + commandText;
-        
+
         cmdDiv.appendChild(promptSpan);
         cmdDiv.appendChild(cmdSpan);
-        
+
         terminalOutput.appendChild(cmdDiv);
         scrollToBottom();
     }
@@ -387,9 +387,9 @@ document.addEventListener('DOMContentLoaded', () => {
         element.innerHTML = '';
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = htmlContent;
-        
+
         const nodes = Array.from(tempDiv.childNodes);
-        
+
         function processNode(node, parent, onComplete) {
             if (node.nodeType === Node.TEXT_NODE) {
                 const text = node.textContent;
@@ -409,10 +409,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const newElem = document.createElement(node.tagName);
                 Array.from(node.attributes).forEach(attr => newElem.setAttribute(attr.name, attr.value));
                 parent.appendChild(newElem);
-                
+
                 const children = Array.from(node.childNodes);
                 let childIdx = 0;
-                
+
                 function nextChild() {
                     if (childIdx < children.length) {
                         processNode(children[childIdx], newElem, () => {
@@ -428,7 +428,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 onComplete();
             }
         }
-        
+
         let rootIdx = 0;
         function nextRoot() {
             if (rootIdx < nodes.length) {
@@ -448,18 +448,18 @@ document.addEventListener('DOMContentLoaded', () => {
             if (onComplete) onComplete();
             return; // For commands like 'clear'
         }
-        
+
         const contentStr = typeof htmlContent === 'function' ? htmlContent() : htmlContent;
-        
+
         const responseDiv = document.createElement('div');
         responseDiv.className = 'text-on-surface-variant pl-md mb-md mt-sm';
-        
+
         const timeStamp = `<span class="text-secondary-fixed-dim">${getTimeStamp()}</span> `;
-        
+
         terminalOutput.appendChild(responseDiv);
-        
+
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        
+
         if (prefersReducedMotion || disableTyping) {
             responseDiv.innerHTML = timeStamp + contentStr;
             scrollToBottom();
@@ -481,22 +481,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle command execution
     function executeCommand(inputString) {
         if (terminalState === 'running') return;
-        
+
         const typedCommand = inputString.trim();
         if (typedCommand === '') return;
-        
+
         terminalState = 'running';
         const lowerCmd = normalizeCommand(inputString);
-        
+
         // Command Map Lookup Layer
         const matchedCommand = commandMap.get(lowerCmd);
-        
+
         printCommand(typedCommand);
-        
+
         if (matchedCommand) {
             const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             const delay = prefersReducedMotion ? 0 : 300;
-            
+
             setTimeout(() => {
                 printResponse(matchedCommand.response, false, () => {
                     if (matchedCommand.action) {
@@ -613,7 +613,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const hasLinks = featuredProject.githubUrl || featuredProject.liveUrl;
             const githubAttr = featuredProject.githubUrl ? `href="${featuredProject.githubUrl}"` : 'disabled aria-disabled="true"';
             const liveAttr = featuredProject.liveUrl ? `href="${featuredProject.liveUrl}"` : 'disabled aria-disabled="true"';
-            
+
             html += `
                 <article class="premium-card relative group overflow-hidden mb-lg flex flex-col">
                     <div class="p-lg flex flex-col justify-between h-full bg-surface-container-low/80">
@@ -788,14 +788,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            
+
             // Basic validation
             const name = document.getElementById('contact-name').value.trim();
             const email = document.getElementById('contact-email').value.trim();
             const message = document.getElementById('contact-message').value.trim();
 
             contactStatus.classList.remove('hidden', 'text-surface-tint', 'text-danger', 'text-warning', 'text-secondary-fixed-dim');
-            
+
             if (!name || !email || !message) {
                 contactStatus.classList.add('text-danger');
                 contactStatus.textContent = '[ERROR] Missing required parameters. Transmission aborted.';
@@ -816,16 +816,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
             setTimeout(() => {
                 contactStatus.textContent = 'Encrypting payload...';
-                
+
                 setTimeout(() => {
                     // Success state
                     contactSubmit.disabled = false;
                     contactSubmit.textContent = 'TRANSMIT_PAYLOAD';
-                    
+
                     window.location.href = `mailto:${portfolioData.profile.email}?subject=Contact from Portfolio&body=${encodeURIComponent(message)}%0A%0AFrom: ${name} <${email}>`;
-                    
+
                     contactForm.reset();
-                    
+
                     contactStatus.classList.remove('text-secondary-fixed-dim', 'text-warning', 'text-danger');
                     contactStatus.classList.add('text-surface-tint');
                     contactStatus.textContent = '[SUCCESS] Transmission confirmed. Mail client launched.';
@@ -843,7 +843,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const sectionObserver = new IntersectionObserver((entries, observer) => {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        
+
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 if (!prefersReducedMotion) {
@@ -858,7 +858,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('section[id]').forEach(section => {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        
+
         // Skip home section as it's above the fold
         if (section.id !== 'home') {
             if (!prefersReducedMotion) {
@@ -890,7 +890,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     'experience': 'experience',
                     'contact': 'contact'
                 };
-                
+
                 if (sectionCommandMap[activeSectionId] === command) {
                     if (link.closest('#mobile-drawer')) {
                         link.classList.remove('text-on-surface');
@@ -958,7 +958,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 closeProjectModal();
             }
         });
-        
+
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && projectModal.hasAttribute('open')) {
                 closeProjectModal();
@@ -967,7 +967,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function openProjectModal(project) {
             modalCategory.textContent = `/${project.category.replace(/ /g, '_').toUpperCase()}`;
-            
+
             // Build Content
             let html = `
                 <div class="mb-xl">
