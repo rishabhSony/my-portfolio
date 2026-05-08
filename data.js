@@ -71,10 +71,82 @@ const portfolioData = {
 
     projects: [
         {
+            name: "Next-Gen ITSM — Agentic ITSM Resolution Platform",
+            slug: "nextgen-itsm",
+            category: "Generative AI / Agentic AI / Enterprise Automation / AWS Cloud",
+            featured: true,
+            description: "An enterprise-grade, AWS-native agentic resolution platform that automates IT incident diagnostics, approval workflows, and remediation using LLM agents, secure tool-calling, RAG, voice workflows, and human-in-the-loop governance.",
+            longDescription: "Next-Gen ITSM is an AWS-native agentic ITSM resolution platform designed to automate enterprise incident diagnostics, human approval workflows, and safe remediation using LLM agents, secure tool-calling, RAG, voice automation, and human-in-the-loop governance.",
+            techStack: [
+                "AWS Bedrock",
+                "AgentCore",
+                "Strands SDK",
+                "Cedar Policies",
+                "Amazon Connect",
+                "Nova 2 Sonic",
+                "Step Functions",
+                "Lambda",
+                "SQS",
+                "DynamoDB",
+                "OpenSearch",
+                "CloudWatch",
+                "X-Ray",
+                "Grafana",
+                "Kinesis Firehose",
+                "OAuth",
+                "mTLS",
+                "Python",
+                "FastAPI"
+            ],
+            githubUrl: "",
+            liveUrl: "",
+            highlights: [
+                "Multi-agent orchestration for diagnostics and execution workflows",
+                "Secure tool-calling using AgentCore Policy and Cedar authorization",
+                "Human-in-the-loop approval aggregation using Step Functions",
+                "Voice-based ITSM support flows with Amazon Connect and Nova 2 Sonic",
+                "Zero Trust VPC access using mTLS and AgentCore Gateway",
+                "Resilience through SQS DLQ, reconciliation Lambda, and CloudWatch alarms",
+                "Observability with X-Ray, CloudWatch, Grafana, and OpenTelemetry",
+                "FinOps support using Bedrock Invocation Logging and Firehose"
+            ],
+            architecture: [
+                "Voice/Chat Interface",
+                "Amazon Connect / Web UI",
+                "AgentCore Gateway (mTLS, Zero Trust)",
+                "Multi-Agent Orchestrator (AWS Bedrock + LLMs)",
+                "RAG + OpenSearch Knowledge Base",
+                "Human-in-the-loop Approval (Step Functions)",
+                "Secure Execution (Lambda + Cedar Policies)",
+                "Observability & FinOps (CloudWatch, X-Ray, Grafana)"
+            ],
+            useCases: [
+                "Automated password resets and account unlocking",
+                "Diagnostic checks for network connectivity issues",
+                "Automated provisioning of IT resources",
+                "Voice-activated support ticketing",
+                "Intelligent routing of complex incidents"
+            ],
+            details: {
+                problemStatement: "Traditional ITSM processes rely heavily on manual intervention for diagnostics and remediation, leading to slow resolution times, high operational costs, and human error. Existing automation often lacks robust security and governance for complex actions.",
+                securityInsights: [
+                    "Implemented zero-trust architecture using mTLS for all agent communications.",
+                    "Secured tool execution using AWS Cedar policies to enforce least-privilege access."
+                ],
+                challenges: "Orchestrating multiple LLM agents while maintaining strict security boundaries and ensuring deterministic outcomes in a non-deterministic environment.",
+                learnings: "Deepened expertise in AgentCore and AWS Bedrock. Mastered complex Step Functions for human-in-the-loop workflows. Gained hands-on experience with voice AI integration using Amazon Connect.",
+                futureImprovements: [
+                    "Integrate predictive incident detection using machine learning models.",
+                    "Expand voice automation capabilities for multi-lingual support.",
+                    "Develop advanced FinOps dashboards for granular cost tracking per agent."
+                ]
+            }
+        },
+        {
             name: "CloudFlow Analytics — AWS VPC Flow Logs to QuickSight Dashboard",
             slug: "cloudflow-analytics",
             category: "Cloud Security / Data Analytics",
-            featured: true,
+            featured: false,
             description: "Built an end-to-end AWS analytics pipeline that transforms raw VPC Flow Logs into actionable network and security insights using S3, Glue, Athena, and QuickSight.",
             longDescription: "CloudFlow Analytics demonstrates a complete raw-data-to-visualization workflow on AWS. It captures raw VPC network traffic through VPC Flow Logs, stores the logs in Amazon S3, catalogs the schema with AWS Glue, queries the data using Amazon Athena, and visualizes security and traffic insights in Amazon QuickSight.",
             techStack: [

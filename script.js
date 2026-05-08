@@ -207,6 +207,21 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         },
         {
+            name: 'itsm',
+            aliases: ['project itsm', 'nextgen'],
+            description: 'View Next-Gen ITSM project',
+            action: () => scrollToSection('projects'),
+            response: () => {
+                const p = portfolioData.projects.find(p => p.slug === 'nextgen-itsm');
+                if (!p) return 'Project not found.';
+                return `
+                Loading project: ${p.name}...<br/>
+                Architecture: ${p.architecture ? p.architecture.join(' → ') : ''}<br/>
+                Focus: Agentic automation, Zero Trust, and secure tool-calling.<br/>
+                `;
+            }
+        },
+        {
             name: 'cloudflow',
             aliases: ['project cloudflow'],
             description: 'View CloudFlow Analytics project',
