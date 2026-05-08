@@ -129,6 +129,35 @@ a:focus, button:focus {
     outline: none;
 }
 
+/* Nav link hover underline animation */
+nav a.nav-cmd {
+    position: relative;
+}
+
+nav a.nav-cmd::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--color-primary);
+    transition: width 0.25s ease;
+}
+
+nav a.nav-cmd:hover::after {
+    width: 100%;
+}
+
+/* Button glow on hover */
+.btn-glow-hover:hover {
+    box-shadow: 0 0 16px rgba(0, 255, 136, 0.3);
+}
+
+.btn-glow-cyan:hover {
+    box-shadow: 0 0 16px rgba(0, 255, 255, 0.3);
+}
+
 /* Prefers Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
     *, ::before, ::after {

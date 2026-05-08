@@ -109,36 +109,46 @@
 <body class="font-body-md text-body-md bg-background text-on-surface selection:bg-surface-tint selection:text-black">
 <a href="#main-content" class="sr-only focus:not-sr-only bg-surface-tint text-black p-sm absolute z-[100] outline-none border-2 border-dashed border-black m-sm">Skip to main content</a>
 <!-- TopAppBar -->
-<header class="fixed top-0 w-full z-50 bg-background/60 backdrop-blur-md border-b border-outline-variant shadow-[0_0_20px_rgba(2,230,0,0.3)] flex justify-between items-center px-margin py-sm">
-<div class="flex items-center gap-sm">
-<span class="material-symbols-outlined text-surface-tint" data-icon="terminal">terminal</span>
-<h1 class="font-headline-lg text-headline-lg text-surface-tint uppercase tracking-tighter m-0">PORTFOLIO_OS_v1.0</h1>
+<header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-lg border-b border-outline-variant/60">
+<div class="max-w-[1440px] mx-auto flex justify-between items-center px-6 md:px-10 h-14">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-surface-tint text-[20px]" data-icon="terminal">terminal</span>
+<span class="font-headline-lg text-[16px] md:text-[18px] text-surface-tint uppercase tracking-tight font-bold">PORTFOLIO_OS</span>
+<span class="hidden sm:inline text-outline font-code-sm text-[11px] ml-1">v1.0</span>
 </div>
-<nav class="hidden md:flex items-center gap-lg">
-<a class="nav-cmd font-code-sm text-code-sm uppercase text-primary-fixed-dim hover:text-surface-tint transition-all duration-300" href="#" data-command="home">$ cd /home</a>
-<a class="nav-cmd font-code-sm text-code-sm uppercase text-on-surface-variant hover:text-surface-tint transition-all duration-300" href="#" data-command="whoami">$ whoami</a>
-<a class="nav-cmd font-code-sm text-code-sm uppercase text-on-surface-variant hover:text-surface-tint transition-all duration-300" href="#" data-command="projects">$ cd /projects</a>
-<a class="nav-cmd font-code-sm text-code-sm uppercase text-on-surface-variant hover:text-surface-tint transition-all duration-300" href="#" data-command="stack">$ cd /stack</a>
-<a class="nav-cmd font-code-sm text-code-sm uppercase text-on-surface-variant hover:text-surface-tint transition-all duration-300" href="#" data-command="experience">$ cat experience.log</a>
-<a class="nav-cmd font-code-sm text-code-sm uppercase text-on-surface-variant hover:text-surface-tint transition-all duration-300" href="#" data-command="contact">$ ssh contact</a>
+<nav class="hidden md:flex items-center gap-5">
+<a class="nav-cmd font-code-sm text-[12px] uppercase text-on-surface-variant/70 hover:text-surface-tint transition-colors duration-200" href="#" data-command="home">home</a>
+<a class="nav-cmd font-code-sm text-[12px] uppercase text-on-surface-variant/70 hover:text-surface-tint transition-colors duration-200" href="#" data-command="whoami">about</a>
+<a class="nav-cmd font-code-sm text-[12px] uppercase text-on-surface-variant/70 hover:text-surface-tint transition-colors duration-200" href="#" data-command="projects">projects</a>
+<a class="nav-cmd font-code-sm text-[12px] uppercase text-on-surface-variant/70 hover:text-surface-tint transition-colors duration-200" href="#" data-command="stack">skills</a>
+<a class="nav-cmd font-code-sm text-[12px] uppercase text-on-surface-variant/70 hover:text-surface-tint transition-colors duration-200" href="#" data-command="experience">experience</a>
+<a class="nav-cmd font-code-sm text-[12px] uppercase text-on-surface-variant/70 hover:text-surface-tint transition-colors duration-200" href="#" data-command="contact">contact</a>
 </nav>
 <div class="flex items-center gap-sm md:hidden">
 <button id="menu-toggle" class="material-symbols-outlined text-on-surface-variant cursor-pointer active:scale-95 outline-none focus-visible:ring-2 focus-visible:ring-secondary min-w-[44px] min-h-[44px] flex items-center justify-center" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">menu</button>
 </div>
+</div>
 </header>
-<main id="main-content" class="pt-[100px] px-margin pb-xl max-w-[1440px] mx-auto space-y-xl">
+<main id="main-content" class="pt-[72px] px-6 md:px-10 pb-xl max-w-[1440px] mx-auto space-y-xl">
 <!-- Centerpiece Branding -->
-<section id="home" class="flex flex-col items-center justify-center py-xl overflow-hidden w-full">
-<pre class="font-headline-xl text-[6px] sm:text-[8px] md:text-[14px] lg:text-[18px] xl:text-[24px] text-surface-tint pixel-text text-center leading-none terminal-glow overflow-hidden max-w-full">██████╗ ██╗███████╗██╗  ██╗ █████╗ ██████╗ ██╗  ██╗
+<section id="home" class="flex flex-col items-start justify-start pt-8 md:pt-12 pb-6 overflow-hidden w-full">
+<pre class="font-headline-xl text-[5px] sm:text-[7px] md:text-[12px] lg:text-[16px] xl:text-[20px] text-surface-tint pixel-text text-left leading-none terminal-glow overflow-hidden max-w-full">██████╗ ██╗███████╗██╗  ██╗ █████╗ ██████╗ ██╗  ██╗
 ██╔══██╗██║██╔════╝██║  ██║██╔══██╗██╔══██╗██║  ██║
 ██████╔╝██║███████╗███████║███████║██████╔╝███████║
 ██╔══██╗██║╚════██║██╔══██║██╔══██║██╔══██╗██╔══██║
 ██║  ██║██║███████║██║  ██║██║  ██║██████╔╝██║  ██║
 ╚═╝  ╚═╝╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝
             </pre>
-<div class="mt-md font-code-sm text-code-sm text-secondary-fixed-dim tracking-[0.5em] uppercase">
-                &lt; FULL_STACK_ENGINEER / CREATIVE_TECHNOLOGIST &gt;
-            </div>
+<div class="mt-4 flex flex-wrap items-center gap-2 md:gap-3">
+<span class="font-code-sm text-[11px] md:text-[12px] text-surface-tint border border-surface-tint/40 px-3 py-1 uppercase tracking-wider">Generative AI Engineer</span>
+<span class="font-code-sm text-[11px] md:text-[12px] text-secondary-fixed-dim/80 uppercase tracking-wider">LLM Apps</span>
+<span class="text-outline-variant/50 text-[10px]">·</span>
+<span class="font-code-sm text-[11px] md:text-[12px] text-secondary-fixed-dim/80 uppercase tracking-wider">RAG Systems</span>
+<span class="text-outline-variant/50 text-[10px]">·</span>
+<span class="font-code-sm text-[11px] md:text-[12px] text-secondary-fixed-dim/80 uppercase tracking-wider">AI Agents</span>
+<span class="text-outline-variant/50 text-[10px]">·</span>
+<span class="font-code-sm text-[11px] md:text-[12px] text-secondary-fixed-dim/80 uppercase tracking-wider">Full-Stack AI</span>
+</div>
 </section>
 <!-- Hero Section: Split Terminal & Overview -->
 <section class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
@@ -162,10 +172,10 @@
 <div class="text-on-surface-variant pl-md mb-md mt-sm">
                         [INIT] Starting Identity.sh...<br/>
                         [SUCCESS] Core loaded in 12ms.<br/><br/>
-<span class="text-secondary-fixed-dim">USER:</span> YOUR_FULL_NAME<br/>
-<span class="text-secondary-fixed-dim">ROLE:</span> YOUR_CURRENT_ROLE<br/>
-<span class="text-secondary-fixed-dim">LOC:</span> YOUR_LOCATION<br/>
-<span class="text-secondary-fixed-dim">DESC:</span> YOUR_SHORT_BIO<br/><br/>
+<span class="text-secondary-fixed-dim">USER:</span> Rishabh Soni<br/>
+<span class="text-secondary-fixed-dim">ROLE:</span> Generative AI Engineer<br/>
+<span class="text-secondary-fixed-dim">LOC:</span> Pune, Maharashtra, India<br/>
+<span class="text-secondary-fixed-dim">FOCUS:</span> LLM Apps, RAG Systems, AI Agents<br/><br/>
 </div>
 </div>
 </div>
@@ -180,20 +190,20 @@
 <h3 class="font-headline-lg text-headline-lg text-on-surface border-b border-outline-variant pb-sm uppercase">System_Overview</h3>
 <div class="space-y-sm font-code-sm">
 <div class="flex justify-between border-b border-outline-variant/30 py-xs">
-<span class="text-on-surface-variant">OS_KERNEL</span>
-<span class="text-surface-tint">v4.12.0-STABLE</span>
+<span class="text-on-surface-variant">ROLE</span>
+<span class="text-surface-tint">GenAI Engineer</span>
 </div>
 <div class="flex justify-between border-b border-outline-variant/30 py-xs">
-<span class="text-on-surface-variant">TECH_STACK</span>
-<span class="text-on-surface">REACT / RUST / AWS</span>
+<span class="text-on-surface-variant">CORE_STACK</span>
+<span class="text-on-surface">Python / AWS / LangChain</span>
 </div>
 <div class="flex justify-between border-b border-outline-variant/30 py-xs">
-<span class="text-on-surface-variant">EXP_LEVEL</span>
-<span class="text-on-surface">8+ YEARS</span>
+<span class="text-on-surface-variant">FOCUS</span>
+<span class="text-on-surface">LLMs / RAG / AI Agents</span>
 </div>
 <div class="flex justify-between border-b border-outline-variant/30 py-xs">
 <span class="text-on-surface-variant">AVAILABILITY</span>
-<span class="text-secondary-fixed-dim">FOR_NEW_CHALLENGES</span>
+<span class="text-secondary-fixed-dim">OPEN_TO_OPPORTUNITIES</span>
 </div>
 </div>
 </div>
