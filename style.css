@@ -1,12 +1,12 @@
 :root {
-    --color-bg: #0a0e27;
-    --color-surface: #1a1f3a;
-    --color-primary: #00ff88;
-    --color-secondary: #00ffff;
-    --color-danger: #ff00ff;
-    --color-warning: #ffb000;
-    --color-muted: #888888;
-    --color-border: rgba(0, 255, 136, 0.3);
+    --color-bg: #1b110c;
+    --color-surface: #281d18;
+    --color-primary: #ffb68d;
+    --color-secondary: #d6c3b6;
+    --color-danger: #ffb4ab;
+    --color-warning: #c3caaa;
+    --color-muted: #a58c7f;
+    --color-border: rgba(255, 182, 141, 0.3);
 }
 
 body::after {
@@ -25,7 +25,7 @@ body::after {
     background-size: 100% 4px;
     z-index: 9999;
     pointer-events: none;
-    opacity: 0.15;
+    opacity: 0.08;
 }
 
 /* Custom Scrollbar for Terminal Window */
@@ -39,7 +39,7 @@ body::after {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #333535; 
+    background: #564338; 
     border-radius: 4px;
 }
 
@@ -53,7 +53,7 @@ html {
 }
 
 .terminal-glow {
-    text-shadow: 0 0 10px rgba(2, 230, 0, 0.5);
+    text-shadow: 0 0 10px rgba(255, 182, 141, 0.4);
 }
 
 .cursor-blink {
@@ -65,23 +65,23 @@ html {
 }
 
 .glass-panel {
-    background: rgba(26, 26, 26, 0.6);
+    background: rgba(40, 29, 24, 0.6);
     backdrop-filter: blur(12px);
-    border: 1px solid #3b4b35;
+    border: 1px solid #564338;
 }
 
 /* Premium Components */
 .premium-card {
-    background: rgba(26, 31, 58, 0.4);
+    background: rgba(40, 29, 24, 0.4);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(132, 150, 124, 0.2);
+    border: 1px solid rgba(165, 140, 127, 0.2);
     border-radius: 4px;
     transition: all 0.3s ease;
 }
 
 .premium-card:hover, .premium-card:focus-within {
     border-color: var(--color-primary);
-    box-shadow: 0 4px 20px rgba(0, 255, 136, 0.15);
+    box-shadow: 0 4px 20px rgba(255, 182, 141, 0.15);
     transform: translateY(-4px);
 }
 
@@ -95,7 +95,7 @@ html {
 .btn-primary:hover, .btn-primary:focus-visible {
     background: var(--color-primary);
     color: var(--color-bg);
-    box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+    box-shadow: 0 0 15px rgba(255, 182, 141, 0.4);
 }
 
 .btn-primary:active {
@@ -109,7 +109,7 @@ html {
 }
 
 .text-link:hover, .text-link:focus-visible {
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    text-shadow: 0 0 10px rgba(214, 195, 182, 0.5);
     color: var(--color-secondary);
 }
 
@@ -151,11 +151,11 @@ nav a.nav-cmd:hover::after {
 
 /* Button glow on hover */
 .btn-glow-hover:hover {
-    box-shadow: 0 0 16px rgba(0, 255, 136, 0.3);
+    box-shadow: 0 0 16px rgba(255, 182, 141, 0.3);
 }
 
 .btn-glow-cyan:hover {
-    box-shadow: 0 0 16px rgba(0, 255, 255, 0.3);
+    box-shadow: 0 0 16px rgba(214, 195, 182, 0.3);
 }
 
 /* Prefers Reduced Motion Support */
